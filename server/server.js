@@ -58,3 +58,9 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
   console.log('server listening on 3000');
 });
+
+
+
+// export app w/o listening to it
+// https://zellwk.com/blog/endpoint-testing/
+module.exports = app;
