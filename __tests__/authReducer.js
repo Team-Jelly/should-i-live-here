@@ -1,7 +1,6 @@
-import subject from '../client/reducers/authReducer';
+// import { TRUE } from 'node-sass';
 import { SIGN_IN, REGISTER, LOGOUT } from '../client/constants/actionTypes';
-import { TRUE } from 'node-sass';
-
+import subject from '../client/reducers/authReducer';
 
 describe('Authentication reducer', () => {
   let state;
@@ -14,15 +13,14 @@ describe('Authentication reducer', () => {
   });
 
   describe('SIGN_IN, but account doesnt exist', () => {
-    const actionNoAccount = {
+    const noAccount = {
       type: SIGN_IN,
       payload: null,
     };
 
     it('should return a default state', () => {
-      expect(subject(state, actionNoAccount)).toEqual(state);
+      expect(subject(state, noAccount)).toEqual(state);
     });
-
   });
 
   describe('SIGN_IN, has an acount', () => {
@@ -31,60 +29,40 @@ describe('Authentication reducer', () => {
       payload: { name: 'cb', email: 'cb@gmail.com' },
     };
 
-    const reduced = subject(state, actionWithAccount);
-
-    const expectedState = { 
-        currentUser: { name: 'cb', email: 'cb@gmail.com' },
-        isLogged: true,
-    }
-
-
-    it('should have a currentUser.name eqal to cb, () => {
-      expect(reduced.currentUser.name).toEqual('cb');
-    });
-
-    it('should have a currentUser.email eqal to email, () => {
-        expect(reduced.currentUser.email).toEqual('cb@gmail.com');
-      });
-
-    it('isLogged in to be true', () => {
-      expect(reduced.isLogged).toBe(true);
-    });
+    const expectedState = {
+      currentUser: { name: 'cb', email: 'cb@gmail.com' },
+      isLogged: true,
+    };
 
     it('test all of them', () => {
-    expect(expectedState).toEqual(reduced)
+      expect(expectedState).toEqual(subject(state, actionWithAccount));
     });
-
   });
 
   describe('REGISTER', () => {
     const actionRegister = {
-        type: REGISTER,
-        payload: { name: 'cb', email: 'cb@gmail.com' },
+      type: REGISTER,
+      payload: { name: 'cb', email: 'cb@gmail.com' },
     };
-  
-    const newReduced = subject(state, actionRegister);
-  
-    const expectedState = { 
-        currentUser: { name: 'cb', email: 'cb@gmail.com' },
-        isLogged: true,
-    }
+
+    const expectedState = {
+      currentUser: { name: 'cb', email: 'cb@gmail.com' },
+      isLogged: true,
+    };
 
     it('test all of them', () => {
-        expect(expectedState).toEqual(newReduced)
+      expect(subject(state, actionRegister)).toEqual(expectedState);
     });
   });
 
   describe('LOGOUT', () => {
     const actionLogout = {
-        type: LOGOUT,
-        payload: [],
-    }
-
-    const newlyReduced = subject(state, actionLogout);
+      type: LOGOUT,
+      payload: [],
+    };
 
     it('test logout', () => {
-        expect(state).toEqual(newlyReduced);
-    })
-  })
+      expect(subject(state, actionLogout)).toEqual(state);
+    });
+  });
 });

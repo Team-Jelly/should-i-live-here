@@ -12,19 +12,19 @@ const authReducer = (state = initialState, action) => {
         return state;
       }
       return {
-        ...state,
+        // ...state,
         currentUser: action.payload,
         isLogged: true,
       };
     case REGISTER:
       return {
-        ...state,
+        // ...state,
         currentUser: action.payload,
         isLogged: true,
       };
     case LOGOUT:
       return {
-        ...state,
+        // ...state,
         currentUser: null,
         isLogged: false,
       };
