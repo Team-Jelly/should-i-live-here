@@ -1,3 +1,5 @@
+const db = require('../models/db');
+
 // controller for accessing city database
 // controller for accessing city databse
 
@@ -48,12 +50,31 @@ apiController.getData = (req, res, next) => {
         description: elem.descriptor,
       }));
       res.locals.data = filteredData;
+
+      const { userId } = req.body;
+      // const { address } = res.locals.data;
+      console.log('****** userId: ', userId);
+      console.log(res.locals.data) // <------------- error 
     })
+    // .then((data) => {
+    //   const { userId } = req.body;
+    //   const { address } = res.locals.data;
+    //   console.log('userId: ', userId);
+    //   console.log('address: ', address)
+    //   db.query(`INSERT INTO history (userId, address) VALUES ($1, $2);`, [userId, address], async (error, user) => {
+    //     if (error) return next(error);
+    //   });
+    // })
     .then(next)
     .catch((err) => next({
       log: err,
       message: { err: 'there was an error fetching 311 data' },
     }));
 };
+
+// add to history table
+apiController.addHistory = (req, res, next) => {
+
+}
 
 module.exports = apiController;
