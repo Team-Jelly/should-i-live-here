@@ -6,7 +6,7 @@ const Register = (props) => {
   return isLogged ? (
     <Redirect to='/results' />
   ) : (
-    <form className="auth" onSubmit={ props.onRegisterSubmit }>
+    <form id="registerForm" className="auth" onSubmit={ props.onRegisterSubmit }>
       <input type="text" placeholder="Choose name" required />
       <input type="email" placeholder="Enter email" required />
       <input type="password" placeholder="Choose password" required />
