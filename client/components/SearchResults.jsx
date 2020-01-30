@@ -7,7 +7,7 @@ class SearchResults extends Component {
     const { results } = this.props;
     const searchResults = results && results.map(({ address, borough, complaintType, date, description }, i) => {
       return (
-        <SearchResult
+        <SearchResult 
           key={`result${i}`}
           address={address} 
           borough={borough}
@@ -15,25 +15,27 @@ class SearchResults extends Component {
           date={date}
           description={description}
         />
-      );
-    });
+      )
+    })
+    console.log('PROPS: ', this.props);
     return (
       <div className="results">
-        <div>
-          <form className="search" onSubmit={this.props.address}>
-            <input id="search" type="text" placeholder="SEARCH FOR YOUR ADDRESS" />
-            <select id="searchBox" className="borough">
-              <option value="brooklyn">Brooklyn</option>
-              <option value="queens">Queens</option>
-              <option value="manhattan">Manhattan</option>
-              <option value="bronx">Bronx</option>
-              <option value="staten island">Staten Island</option>
-            </select>
-            <button id="searchButton">Search</button>
-          </form> 
+        <form className="search" onSubmit={this.props.address}>
+          <input id="search" type="text" placeholder="SEARCH FOR YOUR ADDRESS" />
+          <select id="searchBox" className="borough">
+            <option value="brooklyn">Brooklyn</option>
+            <option value="queens">Queens</option>
+            <option value="manhattan">Manhattan</option>
+            <option value="bronx">Bronx</option>
+            <option value="staten island">Staten Island</option>
+          </select>
+          <button id="searchButton">Search</button>
+        </form>
+        <div id="map">
+          cool map
         </div>
-        <div>
-          
+        <div id="searchHistory">
+          some history
         </div>
         <div className="search-results">
           {searchResults}

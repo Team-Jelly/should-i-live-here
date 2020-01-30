@@ -7,7 +7,7 @@ searchHistoryController.addSearch = async (req, res, next) => {
     next();
   } else {
     const { addressFinal, boroughFinal, userID } = res.locals.info;
-    db.query(`SELECT * FROM history where userid=${userID} AND address='${addressFinal}'`)
+    db.query(`SELECT * FROM history where userid=${userID} AND address='${addressFinal}' AND borough='${boroughFinal}'`)
       .then((response) => {
         if (response.rows.length === 0) {
           db.query(`INSERT INTO history (userid, address, borough) VALUES (${userID}, '${addressFinal}', '${boroughFinal}')`)

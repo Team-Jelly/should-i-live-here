@@ -11,7 +11,7 @@ const Register = (props) => {
       <input type="email" placeholder="Enter email" required />
       <input type="password" placeholder="Choose password" required />
       <button>Register</button>
-      <p className="message">Already have an account? <Link to="/login">Sign In</Link></p>
+      <p className="message">Already have an account? <Link to="/">Sign In</Link></p>
     </form>
   )
 }
