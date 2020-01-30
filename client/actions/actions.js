@@ -34,6 +34,16 @@ export const addressSearch = (address, borough, userId) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+export const getSearchHistory = (userId) => (dispatch) => {
+  fetch(`/user/history/${userId}`)
+    .then((response) => response.json())
+    .then((data) => dispatch({
+      type: types.HISTORY,
+      payload: 'data',
+    }))
+    .catch((err) => console.log(err));
+};
+
 /* AUTHENTICATION */
 
 /* Redux thunk to compare server data with user input from login form */

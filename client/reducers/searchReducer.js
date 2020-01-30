@@ -1,4 +1,4 @@
-import { SEARCH_ADDRESS } from '../constants/actionTypes';
+import { SEARCH_ADDRESS, HISTORY } from '../constants/actionTypes';
 
 const initialState = {
   address_search: '',
@@ -14,6 +14,11 @@ const searchReducer = (state = initialState, action) => {
         address_search: action.payload.address_search,
         previous_searches: [...state.previous_searches, action.payload.address_search],
         current_results: action.payload.current_results,
+      };
+    case HISTORY:
+      return {
+        ...state,
+        previous_searches: [...state.previous_searches, action.payload],
       };
     default:
       return state;
