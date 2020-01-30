@@ -27,7 +27,7 @@ searchHistoryController.getHistory = (req, res, next) => {
       next();
     })
     .catch((err) => next(err))
-}
+};
 
 
 module.exports = searchHistoryController;

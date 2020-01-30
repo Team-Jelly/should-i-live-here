@@ -59,6 +59,7 @@ userController.verifyUser = (req, res, next) => {
       return next();
     });
   });
+  res.locals.user = { email };
 };
 
 module.exports = userController;
