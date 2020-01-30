@@ -31,7 +31,6 @@ const userRouter = require('./routes/userRouter');
 app.use('/user', userRouter);
 // route for all apiRequests
 app.use('/api', apiRouter);
-
 // path for webpack build
 app.use('/build', express.static(path.join(__dirname, '../build')));
 

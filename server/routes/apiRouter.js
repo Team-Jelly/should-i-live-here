@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const apiController = require('../controllers/apiController');
+const searchHistoryController = require('../controllers/searchHistoryController');
 
 
 /* post request to /311 is data from search bar
@@ -13,11 +14,12 @@ JSON obj with key of address and borough in req.body
 'descriptor' --> description
 */
 
-router.post('/', 
+router.post('/',
   apiController.getData,
+  searchHistoryController.addSearch,
   (req, res) => {
     // res.locals.data will be an array of objects sent to the front end
-  return res.status(200).json(res.locals.data);
-})
+    return res.status(200).json(res.locals.data);
+  })
 
 module.exports = router;

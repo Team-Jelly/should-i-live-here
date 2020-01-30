@@ -33,6 +33,7 @@ const format = (str) => {
 apiController.getData = (req, res, next) => {
   const address = format(req.body.address);
   const borough = req.body.borough.toUpperCase();
+
   fetch(`https://data.cityofnewyork.us/resource/erm2-nwe9.json?incident_address='${address}'&$where=borough='${borough}'`,
     {
       headers: {
@@ -50,21 +51,12 @@ apiController.getData = (req, res, next) => {
         description: elem.descriptor,
       }));
       res.locals.data = filteredData;
-
-      const { userId } = req.body;
-      // const { address } = res.locals.data;
-      console.log('****** userId: ', userId);
-      console.log(res.locals.data) // <------------- error 
+      if (res.locals.data.length >= 1) {
+        res.locals.info = { addressFinal: address, boroughFinal: borough, userID: req.body.userId }
+      } else {
+        res.locals.info = false
+      }
     })
-    // .then((data) => {
-    //   const { userId } = req.body;
-    //   const { address } = res.locals.data;
-    //   console.log('userId: ', userId);
-    //   console.log('address: ', address)
-    //   db.query(`INSERT INTO history (userId, address) VALUES ($1, $2);`, [userId, address], async (error, user) => {
-    //     if (error) return next(error);
-    //   });
-    // })
     .then(next)
     .catch((err) => next({
       log: err,
@@ -72,9 +64,9 @@ apiController.getData = (req, res, next) => {
     }));
 };
 
-// add to history table
-apiController.addHistory = (req, res, next) => {
+// // add to history table
+// apiController.addHistory = (req, res, next) => {
 
-}
+// }
 
 module.exports = apiController;
