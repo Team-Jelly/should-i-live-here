@@ -11,6 +11,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addressSearch: (address, borough, userId) => dispatch(actions.addressSearch(address, borough, userId)),
+  getHistory: (userId) => dispatch(actions.getSearchHistory(userId)),
 });
 
 class SearchContainer extends Component {
@@ -18,6 +19,11 @@ class SearchContainer extends Component {
     super();
 
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const id = this.props.userId;
+    this.props.getSearchHistory(id);
   }
 
   onSearchSubmit(e) {
@@ -28,12 +34,15 @@ class SearchContainer extends Component {
     this.props.addressSearch(address, borough, id);
   }
 
+
   render() {
     return (
-      <SearchResults 
-        address={this.onSearchSubmit} 
-        results={this.props.results}
-      />
+      <div>
+        <SearchResults 
+          address={this.onSearchSubmit} 
+          results={this.props.results}
+          />
+      </div>
     );
   }
 }

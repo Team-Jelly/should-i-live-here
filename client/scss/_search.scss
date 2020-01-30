@@ -1,14 +1,22 @@
 .results {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-flow: column nowrap;
+  align-items: center;
   width: 100%;
 }
+
+// .results {
+//   display: flex;
+//   justify-content: center;
+//   flex-wrap: wrap;
+//   width: 100%;
+// }
 
 .search {
   display: flex;
   position: relative;
-  margin: 44px auto;
+  // margin: 44px auto;
   padding: 30px;
   background: $search;
   input {

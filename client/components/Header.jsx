@@ -22,7 +22,7 @@ const Header = (props) => {
         <Link className="cta" to="/user/register">Create Account</Link>
       </div>
     </nav>
-  )
-}
+  );
+};
 
 export default Header;

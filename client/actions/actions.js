@@ -21,6 +21,7 @@ export const addressSearch = (address, borough, userId) => (dispatch) => {
       userId,
     }),
   };
+  console.log('addressSearch');
   fetch('/api', config)
     .then((response) => response.json())
     .then((data) => dispatch({
@@ -29,6 +30,16 @@ export const addressSearch = (address, borough, userId) => (dispatch) => {
         address_search: `${address} ${borough}`,
         current_results: data,
       },
+    }))
+    .catch((err) => console.log(err));
+};
+
+export const getSearchHistory = (userId) => (dispatch) => {
+  fetch(`/user/history/${userId}`)
+    .then((response) => response.json())
+    .then((data) => dispatch({
+      type: types.HISTORY,
+      payload: 'data',
     }))
     .catch((err) => console.log(err));
 };
