@@ -7,10 +7,13 @@ import * as actions from '../actions/actions.js';
 const mapStateToProps = (state) => ({
   results: state.search.current_results,
   userId: state.auth.currentUser.id,
+  longitude: state.search.longitude,
+  latitude: state.search.latitude,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addressSearch: (address, borough, userId) => dispatch(actions.addressSearch(address, borough, userId)),
+  getSearchHistory: (userId) => dispatch(actions.getSearchHistory(userId)),
 });
 
 class SearchContainer extends Component {
@@ -18,6 +21,11 @@ class SearchContainer extends Component {
     super();
 
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const id = this.props.userId;
+    this.props.getSearchHistory(id);
   }
 
   onSearchSubmit(e) {
@@ -28,12 +36,17 @@ class SearchContainer extends Component {
     this.props.addressSearch(address, borough, id);
   }
 
+
   render() {
     return (
-      <SearchResults 
-        address={this.onSearchSubmit} 
-        results={this.props.results}
-      />
+      <div>
+        <SearchResults 
+          lat= {this.props.latitude}
+          lng= {this.props.longitude}
+          address={this.onSearchSubmit} 
+          results={this.props.results}
+          />
+      </div>
     );
   }
 }

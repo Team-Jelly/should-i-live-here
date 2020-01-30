@@ -19,7 +19,6 @@ const mapDispatchToProps = (dispatch) => ({
   userLogout: () => dispatch(actions.userLogout()),
 });
 
-
 class MainContainer extends Component {
   constructor() {
     super();
@@ -27,7 +26,6 @@ class MainContainer extends Component {
     this.onRegisterSubmit = this.onRegisterSubmit.bind(this);
     this.onLogoutSubmit = this.onLogoutSubmit.bind(this);
   }
-
 
   componentDidUpdate() {
     console.log(this.props);
