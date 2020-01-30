@@ -39,7 +39,7 @@ export const getSearchHistory = (userId) => (dispatch) => {
     .then((response) => response.json())
     .then((data) => dispatch({
       type: types.HISTORY,
-      payload: 'data',
+      payload: data,
     }))
     .catch((err) => console.log(err));
 };
