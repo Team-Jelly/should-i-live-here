@@ -19,15 +19,15 @@ class SearchResults extends Component {
     return (
       <div className="results">
         <form className="search" onSubmit={this.props.address}>
-          <input type="text" placeholder="SEARCH FOR YOUR ADDRESS" />
-          <select className="borough">
+          <input id="search" type="text" placeholder="SEARCH FOR YOUR ADDRESS" />
+          <select id="searchBox" className="borough">
             <option value="brooklyn">Brooklyn</option>
             <option value="queens">Queens</option>
             <option value="manhattan">Manhattan</option>
             <option value="bronx">Bronx</option>
             <option value="staten island">Staten Island</option>
           </select>
-          <button>Search</button>
+          <button id="searchButton">Search</button>
         </form>
         <div className="search-results">
           {searchResults}
