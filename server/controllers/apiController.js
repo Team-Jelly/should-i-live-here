@@ -44,12 +44,14 @@ apiController.getData = (req, res, next) => {
     .then((data) => data.json())
     .then((data) => {
       const filteredData = data.map((elem) => ({
+        location: elem.location,
         date: elem.created_date,
         address: elem.incident_address,
         borough: elem.borough,
         complaintType: elem.complaint_type,
         description: elem.descriptor,
       }));
+      console.log(filteredData)
       res.locals.data = filteredData;
       if (res.locals.data.length >= 1) {
         res.locals.info = { addressFinal: address, boroughFinal: borough, userID: req.body.userId }
