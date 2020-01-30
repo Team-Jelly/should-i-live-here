@@ -7,6 +7,8 @@ import * as actions from '../actions/actions.js';
 const mapStateToProps = (state) => ({
   results: state.search.current_results,
   userId: state.auth.currentUser.id,
+  longitude: state.search.longitude,
+  latitude: state.search.latitude,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -39,6 +41,8 @@ class SearchContainer extends Component {
     return (
       <div>
         <SearchResults 
+          lat= {this.props.latitude}
+          lng= {this.props.longitude}
           address={this.onSearchSubmit} 
           results={this.props.results}
           />
