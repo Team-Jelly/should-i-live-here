@@ -27,7 +27,6 @@ userController.createUser = (req, res, next) => {
     });
   });
   // storing name and email to send back to frontend
-  res.locals.user = { name, email };
   return next();
 };
 
@@ -36,6 +35,8 @@ userController.verifyUser = (req, res, next) => {
   console.log('verifyUser controller hit');
   // taking in only email and password upon login attempt
   const { email, password } = req.body;
+  res.locals.user = { email };
+
   // sending get/select request to database to check for unique email
   db.query('SELECT * FROM Users WHERE email = $1', [email], (error, user) => {
     if (error) {
@@ -59,7 +60,6 @@ userController.verifyUser = (req, res, next) => {
       return next();
     });
   });
-  res.locals.user = { email };
 };
 
 module.exports = userController;
