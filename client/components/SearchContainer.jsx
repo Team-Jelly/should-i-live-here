@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addressSearch: (address, borough, userId) => dispatch(actions.addressSearch(address, borough, userId)),
-  getHistory: (userId) => dispatch(actions.getSearchHistory(userId)),
+  getSearchHistory: (userId) => dispatch(actions.getSearchHistory(userId)),
 });
 
 class SearchContainer extends Component {
