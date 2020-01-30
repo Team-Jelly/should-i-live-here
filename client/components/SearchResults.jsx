@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchResult from './SearchResult.jsx';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class SearchResults extends Component {
   render() {
     const { results } = this.props;

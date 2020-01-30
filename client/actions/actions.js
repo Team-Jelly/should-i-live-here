@@ -21,6 +21,7 @@ export const addressSearch = (address, borough, userId) => (dispatch) => {
       userId,
     }),
   };
+  console.log('addressSearch');
   fetch('/api', config)
     .then((response) => response.json())
     .then((data) => dispatch({
