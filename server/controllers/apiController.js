@@ -1,3 +1,5 @@
+const db = require('../models/db');
+
 // controller for accessing city database
 // controller for accessing city databse
 
@@ -31,6 +33,7 @@ const format = (str) => {
 apiController.getData = (req, res, next) => {
   const address = format(req.body.address);
   const borough = req.body.borough.toUpperCase();
+
   fetch(`https://data.cityofnewyork.us/resource/erm2-nwe9.json?incident_address='${address}'&$where=borough='${borough}'`,
     {
       headers: {
@@ -50,6 +53,11 @@ apiController.getData = (req, res, next) => {
       }));
       console.log(filteredData)
       res.locals.data = filteredData;
+      if (res.locals.data.length >= 1) {
+        res.locals.info = { addressFinal: address, boroughFinal: borough, userID: req.body.userId }
+      } else {
+        res.locals.info = false
+      }
     })
     .then(next)
     .catch((err) => next({
@@ -57,5 +65,10 @@ apiController.getData = (req, res, next) => {
       message: { err: 'there was an error fetching 311 data' },
     }));
 };
+
+// // add to history table
+// apiController.addHistory = (req, res, next) => {
+
+// }
 
 module.exports = apiController;
